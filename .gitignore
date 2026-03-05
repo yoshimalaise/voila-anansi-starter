@@ -217,6 +217,9 @@ __marimo__/
 
 .DS_Store
 
+#persisted data
+/persisted_data/**
+/shared_data/**
 
 #build artefacts
 /build/**
