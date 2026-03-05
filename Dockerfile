@@ -7,4 +7,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD [ "voila", "/app/index.ipynb", "--VoilaConfiguration.allow_template_override=NO" ]
+EXPOSE 7777
+
+CMD [ "voila", "--VoilaConfiguration.allow_template_override=NO", "--port=7777", "--no-browser", "--Voila.ip=0.0.0.0", "/app/index.ipynb" ]
