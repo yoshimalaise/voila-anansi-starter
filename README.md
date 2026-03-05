@@ -1,5 +1,14 @@
 # Voilà Anansi Starter Template
 
+Folder structure:
+
+- index.ipynb: The notebook file in which you can implement your application
+
+- app_data: this folder should contain static, read-only data for the application (assets/resources)
+
+- persisted_data: this folder should be left empty in the repo, your notebook can write data to this folder that will be persisted on the network drive
+
+- shared_data: this folder will be mounted to the shared data folder that is accessible from all B-TXT applications
 
 ## Preparing for Deploy
 
@@ -12,3 +21,4 @@ https://docs.docker.com/build/exporters/local-tar/
 Building a .sif file on mac:
 https://clange.ch/posts/apptainer-on-mac/
 
+### 
