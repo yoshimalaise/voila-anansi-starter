@@ -7,8 +7,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-RUN rm -rf /app/persisted_data/*
-RUN rm -rf /app/shared_data/*
+RUN rm -rf /app/resources/persisted/*
+RUN rm -rf /app/resources/shared/*
 
 EXPOSE 7777
 
