@@ -2,6 +2,23 @@
 
 This repository serves as a starter template to enable the rapid development of scientific applications based on jupypter notebooks.
 
+Make sure to work in a virtual environment when writing your code.
+You can create a new virtual environment by running:
+```shell
+python3 -m venv .env
+```
+
+To load the environment run
+
+```shell
+source .env/bin/activate
+```
+
+If you get an error about missing modules make sure to install the required packages:
+```shell
+pip install -r requirements.txt
+```
+
 ## Folder structure:
 
 - index.ipynb: The notebook file in which you can implement your application
