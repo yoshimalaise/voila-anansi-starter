@@ -39,12 +39,13 @@ apptainer run \
     --env "HF_HOME=/app/resources/persisted/hugging_face_cache" \
     --env "WEBSERVER_PORT=\$WEBSERVER_PORT" \
     --bind ./data:/app/resources/persisted \
-    ./container.sif &>> "./logs.txt"
+    ./container.sif &>> "./logs.txt" &
 
 echo "Waiting for webserver to start..."
-until curl --output /dev/null --silent --head --fail http://localhost:\$WEBSERVER_PORT; do
-    sleep 1
-done
+# until curl --output /dev/null --silent --head --fail http://localhost:\$WEBSERVER_PORT; do
+#     sleep 1
+# done
+sleep 8
 echo "Webserver is up."
 
 # Open firefox in kiosk mode and point to the started container
