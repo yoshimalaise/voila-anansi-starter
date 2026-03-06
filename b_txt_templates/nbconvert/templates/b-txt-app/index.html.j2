@@ -6,31 +6,50 @@
 
 {%- block html_head_css -%}
 {{ super() }}
-{% if resources.theme == 'dark' %}
-{% set bar_color = '#555454' %}
-{% else %}
-{% set bar_color = '#5cbcaf' %}
-{% endif %}
+
+{% set bar_color = '#ffffff' %}
+
 {{ resources.include_css("static/materialize.min.css") }}
 
 <style type="text/css">
   body {
-    background-color: var(--jp-layout-color0);
-    overflow-y: scroll;
+    width: 100vw;
+    height: 100vh;
+    --jp-notebook-padding: 0px;
+  }
+
+  header {
+    height: 64px;
+    background-color: #ffffff;
+    margin: 4px;
+  }
+
+  main {
+    height: calc(100vh - 72px);
+    background-color: #eeeeee;
+    overflow-y: auto;
+  }
+
+  .brand-logo {
+    height: 100%;
   }
 
   /* Overwrite default value, workaround for not breaking materialize */
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+  }
   .jp-Notebook {
     padding: 0px !important;
   }
 
-  .nav-wrapper {
-    background-color: {{ bar_color }};
+  .jp-Notebook .theme-light {
+    background: transparent;
   }
 
-  .brand-logo {
-    height: 90%;
-    width: 100%;
+  .nav-wrapper {
+    background-color: {{ bar_color }};
   }
 
   .voila-spinner-color1 {
@@ -57,18 +76,7 @@ a.anchor-link {
 {%- block body_header -%}
   {{ super() }}
   <header>
-    <div class="navbar-fixed">
-      <nav class="top-nav">
-        <div class="nav-wrapper">
-          <a href="#!" class="brand-logo-container">
-            <object class="brand-logo" type="image/svg+xml" data="{{ resources.include_url("static/voila_logo.svg") }}"></object>
-          </a>
-          <ul class="right">
-            <li><a href="#"><i class="material-icons" id="kernel-status-icon">radio_button_unchecked</i></a></li>
-          </ul>
-        </div>
-      </nav>
-    </div>
+      <object class="brand-logo" type="image/jpg" data="{{ resources.include_url("static/btxt_logo.jpg") }}"></object>
   </header>
 
   <main>
@@ -78,11 +86,7 @@ a.anchor-link {
 {%- endblock body_header -%}
 
 {%- block body_loop -%}
-          {% if resources.theme == 'dark' %}
-          <div class="jp-Notebook theme-dark">
-          {% else %}
           <div class="jp-Notebook theme-light">
-          {% endif %}
             {{ super() }}
           </div>
 {%- endblock body_loop -%}
