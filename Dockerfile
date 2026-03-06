@@ -21,4 +21,4 @@ COPY ./b_txt_templates/nbconvert/templates/ /usr/local/share/jupyter/nbconvert/t
 
 COPY ./b_txt_templates/voila/templates/ /usr/local/share/jupyter/voila/templates/
 
-CMD [ "voila", "--VoilaConfiguration.allow_template_override=NOTEBOOK", "--port=7777", "--no-browser", "--Voila.ip=0.0.0.0", "--template=b-txt-app", "/app/index.ipynb" ]
+CMD [ "voila", "--VoilaConfiguration.allow_template_override=NOTEBOOK", "--port=7777", "--no-browser", "--Voila.ip=0.0.0.0", "--template=b-txt-app", "--preheat_kernel=True",  "--pool_size=1" "/app/index.ipynb" ]
