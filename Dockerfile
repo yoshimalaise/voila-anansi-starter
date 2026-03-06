@@ -1,5 +1,9 @@
 FROM python:3.14
 
+# Perform basic configuration of environment variables 
+ENV HF_HOME=/app/resources/persisted/hugging_face_cache
+ENV WEBSERVER_PORT=7777
+
 WORKDIR /app
 
 # install all dependencies
@@ -16,9 +20,15 @@ RUN rm -rf /app/b_txt_templates
 EXPOSE 7777
 
 # move over template files
-
 COPY ./b_txt_templates/nbconvert/templates/ /usr/local/share/jupyter/nbconvert/templates/
-
 COPY ./b_txt_templates/voila/templates/ /usr/local/share/jupyter/voila/templates/
 
-CMD [ "voila", "--VoilaConfiguration.allow_template_override=NOTEBOOK", "--port=7777", "--no-browser", "--Voila.ip=0.0.0.0", "--template=b-txt-app", "--preheat_kernel=True",  "--pool_size=1" "/app/index.ipynb" ]
+
+CMD ["sh", "-c", "voila --VoilaConfiguration.allow_template_override=NOTEBOOK \
+    --port=${WEBSERVER_PORT}  \
+    --no-browser \
+    --Voila.ip=0.0.0.0 \
+    --preheat_kernel=True \
+    --pool_size=1 \
+    --template=b-txt-app \
+    /app/index.ipynb" ]
