@@ -1,14 +1,13 @@
 # file based on https://github.com/PeterJFrancoIII/Antigravity-Model-Reset-Timer/blob/main/launcher.py
+import threading
+
 import webview
-import subprocess
 import socket
 import sys
 import time
 import os
 import multiprocessing
 from voila.app import Voila, VoilaConfiguration
-
-## pyinstaller launcher.py --add-data "b_txt_templates:b_txt_templates"
 
 def wait_for_server(port=8866):
     while True:
@@ -65,15 +64,18 @@ def start_desktop_client():
     )
     webview.start()
 
-
-if __name__ == '__main__':
+def bootstrap():
     server_process = multiprocessing.Process(target=start_server)
-    # desktop_process = multiprocessing.Process(target=start_desktop_client)
+    desktop_process = multiprocessing.Process(target=start_desktop_client)
     server_process.start()
-    # desktop_process.start()
-    # desktop_process.join()
-    start_desktop_client()
+    desktop_process.start()
+    desktop_process.join()
     print("Desktop Client Closed, Stopping Server")
     server_process.terminate()
     server_process.join()
     print("Finished")
+    
+
+if __name__ == '__main__':
+    bootstrap()
+
